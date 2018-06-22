@@ -8,24 +8,9 @@ class HtmlOutputer(object):
         self.datas = data
 
     def output_html(self):
-        fout = open('output.html', 'w', encoding='utf-8')
-
-        fout.write("<html>")
-        fout.write("<head>")
-        fout.write("<meta charset='utf-8'>")
-        fout.write("</head>")
-        fout.write("<body>")
-        fout.write("<table>")
+        fout = open('output.txt', 'w', encoding='utf-8')
 
         for data in self.datas:
-            fout.write("<tr>")
-            fout.write("<td>")
             fout.write(data)
-            fout.write("</td>")
-            fout.write("</tr>")
-
-        fout.write("</table>")
-        fout.write("</body>")
-        fout.write("</html>")
 
         fout.close()

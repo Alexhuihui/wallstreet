@@ -1,4 +1,4 @@
-from spiderWallStreet import url_manager, html_downloader, html_output, html_parser
+from frequencyAnalysis import url_manager, html_downloader, html_output, html_parser
 from databaseconnection import dao
 import datetime
 import time
@@ -9,17 +9,6 @@ class SpiderMain(object):
         self.parser = html_parser.HtmlParser()
         self.outputer = html_output.HtmlOutputer()
         self.dao = dao.Dao()
-
-    def main(self, root_url, m = 0, h = 21):
-        while True:
-            now = datetime.datetime.now()
-            print(now.hour, now.minute)
-            #每天晚上9点停止程序
-            if now.minute == m and now.hour == h:
-                break
-                # 每隔60秒爬取一次
-            time.sleep(60)
-            self.craw(root_url)
 
     def craw(self, root_url):
         count = 1
