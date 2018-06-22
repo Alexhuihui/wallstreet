@@ -1,8 +1,9 @@
 # -*- coding:utf-8 -*-
-from wallstreet.databaseconnection import dao
+from databaseconnection import dao
 import pymysql
 
 dao = dao.Dao()
+print(dao.select_once_data())
 # conn = dao1.get_conn()
 #
 # cur = conn.cursor()
@@ -13,4 +14,4 @@ dao = dao.Dao()
 #
 # delete_sql = "delete from information where id = 2"
 
-dao.insert("qqqqq")
+# dao.insert("qqqqq")
