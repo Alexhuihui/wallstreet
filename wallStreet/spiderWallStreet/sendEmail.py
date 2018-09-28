@@ -4,7 +4,7 @@ from email.header import Header
 from email.mime.text import MIMEText
 import datetime
 import time
-mport dao
+import dao
 
 class Sender(object):
 

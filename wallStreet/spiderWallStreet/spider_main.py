@@ -2,6 +2,8 @@ import url_manager, html_downloader, html_output, html_parser
 import dao
 import datetime
 import time
+
+
 class SpiderMain(object):
     def __init__(self):
         self.urls = url_manager.UrlManager()
@@ -10,14 +12,14 @@ class SpiderMain(object):
         self.outputer = html_output.HtmlOutputer()
         self.dao = dao.Dao()
 
-    def main(self, root_url, m = 0, h = 21):
+    def main(self, root_url, m=0, h=21):
         while True:
             now = datetime.datetime.now()
             print(now.hour, now.minute)
-            #每天晚上9点停止程序
-            if now.minute == m and now.hour == h:
-                break
-                # 每隔60秒爬取一次
+            # 每天晚上9点之后停止程序
+            # if now.hour >= h:
+            #     break
+            # 每隔60秒爬取一次
             time.sleep(60)
             self.craw(root_url)
 
@@ -28,7 +30,7 @@ class SpiderMain(object):
             try:
 
                 new_url = self.urls.get_new_url()
-                self.urls.add_new_url(root_url)
+                self.urls.add_new_url(new_url)
 
                 print('craw %d : %s' % (count, new_url))
 
@@ -42,13 +44,13 @@ class SpiderMain(object):
                     break
 
                 count += 1
-
             except:
                 print('craw failed')
 
         self.outputer.output_html()
 
+
 if __name__ == '__main__':
     root_url = 'https://wallstreetcn.com/live/global'
     obj_spider = SpiderMain()
-    obj_spider.craw(root_url)
+    obj_spider.main(root_url)
